@@ -1,4 +1,4 @@
-Package: spsur
+Package: spsurcp
 Type: Package
 Title: Spatial Seemingly Unrelated Regression Models
 Version: 1.0.2.1
@@ -64,3 +64,4 @@ RoxygenNote: 7.1.2
 RdMacros: Rdpack
 URL: https://CRAN.R-project.org/package=spsur
 BugReports: https://github.com/rominsal/spsur/issues
+
