@@ -61,7 +61,7 @@ get_data_spsur <- function(formula, mf, Durbin = FALSE,
           } else {
               WXi <- NULL
               for (j in 1:Tm) {
-                Xit <- Xi[((((i-1)*N)+1):(i*N)), ]
+                Xit <- Xi[((((i-1)*N)+1):(i*N)), , drop=FALSE] # change made here
                 WXit <- spatialreg::create_WX(Xit[,-c(icept), drop = FALSE], 
                                               listw, 
                                               zero.policy = zero.policy, 
@@ -77,7 +77,7 @@ get_data_spsur <- function(formula, mf, Durbin = FALSE,
           } else {
             WXi <- NULL
             for (j in 1:Tm) {
-              Xit <- Xi[((((i-1)*N)+1):(i*N)), ]
+              Xit <- Xi[((((i-1)*N)+1):(i*N)), , drop=FALSE] # change made here
               WXit <- spatialreg::create_WX(Xit, listw, 
                                             zero.policy = zero.policy, 
                                             prefix = prefix)
@@ -99,7 +99,7 @@ get_data_spsur <- function(formula, mf, Durbin = FALSE,
           } else {
             WXi <- NULL
             for (j in 1:Tm) {
-              fXit <- fXi[((((i-1)*N)+1):(i*N)), ]
+              fXit <- fXi[((((i-1)*N)+1):(i*N)), , drop=FALSE] #change made here
               WXit <- spatialreg::create_WX(fXit[,-c(icept), drop = FALSE], 
                                             listw, 
                                             zero.policy = zero.policy, 
@@ -115,7 +115,7 @@ get_data_spsur <- function(formula, mf, Durbin = FALSE,
           } else {
             WXi <- NULL
             for (j in 1:Tm) {
-              fXit <- fXi[((((i-1)*N)+1):(i*N)), ]
+              fXit <- fXi[((((i-1)*N)+1):(i*N)), , drop=FALSE] #change made here
               WXit <- spatialreg::create_WX(fXit, listw, 
                                             zero.policy = zero.policy, 
                                             prefix = prefix)
@@ -164,7 +164,7 @@ get_data_spsur <- function(formula, mf, Durbin = FALSE,
     for (j in 1:G){
       # Lee R filas de cada vector Yi y matriz Xi
       Yj <- matrix(Y[[j]][((i-1)*N+1):(i*N)], ncol = 1)
-      Xj <- X[[j]][((i-1)*N+1):(i*N),]
+      Xj <- X[[j]][((i-1)*N+1):(i*N),, drop=FALSE]
       colnames(Yj) <- colnames(Y[[j]])
       colnames(Xj) <- colnames(X[[j]])
       Yg[[j]] <- Yj
@@ -192,3 +192,4 @@ get_data_spsur <- function(formula, mf, Durbin = FALSE,
   res <- list(Y = Yf, X = Xf, G = G, N = N, Tm = Tm, p = p,
               dvars = dvars)
 }
+
